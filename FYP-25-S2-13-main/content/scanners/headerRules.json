@@ -1,0 +1,37 @@
+{
+  "Missing Strict-Transport-Security": {
+    "severity": "HIGH",
+    "suggestion": "Add 'Strict-Transport-Security' with a long max-age to enforce HTTPS and prevent downgrade attacks.",
+    "reference": "OWASP Secure Headers Project: https://owasp.org/www-project-secure-headers/#strict-transport-security"
+  },
+  "Missing X-Frame-Options": {
+    "severity": "HIGH",
+    "suggestion": "Add 'X-Frame-Options: DENY' or 'SAMEORIGIN' to prevent clickjacking.",
+    "reference": "OWASP: https://owasp.org/www-community/attacks/Clickjacking"
+  },
+  "Missing X-Content-Type-Options": {
+    "severity": "MODERATE",
+    "suggestion": "Add 'X-Content-Type-Options: nosniff' to prevent MIME-sniffing attacks.",
+    "reference": "MDN: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options"
+  },
+  "Missing Referrer-Policy": {
+    "severity": "LOW",
+    "suggestion": "Add 'Referrer-Policy' to control what information is sent in the Referer header.",
+    "reference": "OWASP: https://owasp.org/www-project-secure-headers/#referrer-policy"
+  },
+  "Missing Permissions-Policy": {
+    "severity": "MODERATE",
+    "suggestion": "Add 'Permissions-Policy' to restrict access to powerful features like geolocation, camera, etc.",
+    "reference": "MDN: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy"
+  },
+  "Missing XSS-Protection": {
+    "severity": "LOW",
+    "suggestion": "Add 'X-XSS-Protection: 1; mode=block' for legacy XSS protection (mostly for old IE/Edge).",
+    "reference": "OWASP: https://owasp.org/www-community/xss-prevention"
+  },
+  "Scanner Error": {
+    "severity": "MODERATE",
+    "suggestion": "Scanner encountered an error while fetching headers.",
+    "reference": "Scanner internal error"
+  }
+}

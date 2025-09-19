@@ -1,0 +1,37 @@
+{
+  "inline-event-handler": {
+    "severity": "MODERATE",
+    "suggestion": "Move inline event handlers into external JS and use addEventListener().",
+    "references": [
+      "OWASP XSS Prevention Cheat Sheet: Avoid inline event handlers"
+    ]
+  },
+  "javascript-uri": {
+    "severity": "MODERATE",
+    "suggestion": "Avoid `javascript:` URLs. Use event listeners or proper link URLs instead.",
+    "references": [
+      "OWASP XSS Prevention Cheat Sheet: Don’t use javascript: URIs"
+    ]
+  },
+  "inline-script": {
+    "severity": "HIGH",
+    "suggestion": "Move inline `<script>` contents into external files and enforce a strong CSP.",
+    "references": [
+      "OWASP XSS Prevention Cheat Sheet: Don’t place untrusted HTML into `<script>`"
+    ]
+  },
+  "css-javascript": {
+    "severity": "HIGH",
+    "suggestion": "Remove `javascript:` from CSS. Use safe CSS or external style sheets.",
+    "references": [
+      "DOMPurify Issue #—CSS javascript bypass (e.g. mXSS via `style` attribute)"
+    ]
+  },
+  "iframe-srcdoc": {
+    "severity": "HIGH",
+    "suggestion": "Avoid unsanitized `srcdoc`. Use a sandboxed iframe or external HTML file with proper sanitization.",
+    "references": [
+      "DOMPurify GitHub Release Notes: srcdoc bypass considerations"
+    ]
+  }
+}

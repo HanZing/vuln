@@ -1,0 +1,343 @@
+.scanHistoryPage {
+  position: absolute;
+  top: 3rem;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  background-color: #D9D9D9;
+  scrollbar-width: thin;
+  scrollbar-color: #d9d9d9 #f1f1f2;
+}
+
+.scanHistoryPage::-webkit-scrollbar {
+  width: 10px; 
+  background-color: #f1f1f2; 
+}
+
+.scanHistoryPage::-webkit-scrollbar-track {
+  background: #f1f1f2; 
+  border-radius: 10px;
+}
+
+.scanHistoryPage::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  border: 2px solid #f1f1f2; 
+}
+
+.scanHistoryPage::-webkit-scrollbar-thumb:hover {
+  background-color: #d9d9d9; 
+}
+
+.scanHistoryPage::-webkit-scrollbar-button {
+  background-color: #d9d9d9;
+  height: 14px;
+}
+
+.scanHistoryPage::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-bottom: 1px solid #f1f1f2;
+}
+
+.scanHistoryPage::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-top: 1px solid #f1f1f2;
+}
+
+.scanHistoryHeader {
+  display: flex;
+  align-items: center; 
+  padding: 6px 10px;
+  gap: 12px;
+  border-bottom: 3px solid #384247;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; 
+  display: flex;
+  align-items: center; 
+}
+
+.backButton img {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.scanHistoryTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #384247;
+  margin: 0; 
+  line-height: 1;
+}
+
+.date-card {
+  display: flex !important;     
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+
+.date-block {
+  max-width: 494px;
+  width: 100%;
+  background: #f1f1f2;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin: 10px 0;
+}
+
+
+
+.date-header {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #384247;
+  padding-top: 7px;
+}
+
+.date-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.scan-item {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  max-width: 700px; 
+  margin-bottom: 5px;
+  color: #384247;
+  font-family: 'Inter', sans-serif;
+}
+
+
+.scan-details {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0; 
+  font-weight: 500;
+}
+
+
+.scan-item:last-child {
+  border-bottom: none;
+}
+
+.url-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  color: #384247;
+}
+
+.scan-url {
+  flex: 1;                
+  max-width: 233px;               
+  font-size: 14px;
+  color: #384247;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.scan-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.scan-time {
+  width: 60px;       
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.scan-mode {
+  width: 67px;      
+  text-align: middle;
+  flex-shrink: 0;
+}
+
+.scan-score {
+  width: 60px;        
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.score-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.deleteScanBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: -3px;
+  transition: transform 0.2s ease-in-out;
+  margin-right: -1.5px;
+}
+
+.deleteScanBtn img {
+  width: 20px;
+  height: 20px;
+}
+
+.deleteScanBtn:hover {
+  transform: scale(1.2); 
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: rgba(241, 241, 242, 0.85);
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+#setting3 {
+  margin-left: auto;
+  background: none;    
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#setting3 img.setting3 {
+  width: 20px;   
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(23%) sepia(7%) saturate(420%) hue-rotate(165deg) brightness(95%) contrast(90%);
+  transition: transform 0.2s ease;
+}
+
+#setting3:hover img.setting3 {
+  transform: scale(1.15);
+}
+
+.dropdownMenuScan {
+  position: absolute;
+  top: 100px; 
+  right: 10px;
+  background: #f1f1f2;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(88, 94, 97, 0.4);
+  z-index: 100;
+  width: 157px;
+  padding: 6px;
+  border: none; 
+}
+
+.dropdownItem3 {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  font-weight: 600;
+  color: #384247;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 10px; 
+}
+
+.dropdownItem3:hover {
+  background-color: rgba(206, 230, 242, 0.7);
+}
+
+.dropdown-icon {
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.dropdownMenuScan button {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 30px;
+}
+
+#datePickerWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+}
+
+.date-picker-modal {
+  background: #D9D9D9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: -140px;
+}
+
+#centeredDatePicker {
+  background: #D9D9D9;
+  color: #384247;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border: 1px solid #384247;
+  border-radius: 6px;
+  width: 200px;
+}
+

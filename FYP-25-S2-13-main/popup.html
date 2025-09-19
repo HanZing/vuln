@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Extension Popup</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="odometer/odometer.css">
+    <link rel="stylesheet" href="setting/setting.css">
+    <link rel="stylesheet" href="setting/extensionConfiguration/configuration.css">
+    <link rel="stylesheet" href="setting/scanHistory/scanHistory.css">
+    <link rel="stylesheet" href="setting/whitelist/whitelist.css">
+    <link rel="stylesheet" href="setting/plan/plan.css">
+    <link rel="stylesheet" href="maincontent/maincontent.css">
+  </head>
+
+  <body>
+    <div class="header">
+      <button class="logo" id="menuButton">
+        <img src="icons/icon128.png" alt="logo" class="logoIcon" />
+        <span class="logoName">VULNEYE</span>
+        <img src="icons/rightarrow.png" alt="right" class="rightArrow" />
+      </button>
+      <div class="icons">
+        <button id="offExtension">
+          <img src="icons/onoffs.png" alt="Toggle" class="offon" />
+        </button>
+        <button id="setting">
+          <img src="icons/settings.png" alt="Settings" class="setting" />
+        </button>
+      </div>
+      <div id="loading-screen">
+        <div class="loading-bar-container">
+          <div id="loading-bar"></div>
+        </div>
+        <div id="loading-text">Starting...</div>
+      </div>
+    </div>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+      <button class="dropdownItem" id="share-button">
+        <img src="icons/share.png" class="dropdown-icon" /> Share
+      </button>
+      <button class="dropdownItem" id="export-pdf">
+        <img src="icons/export.png" class="dropdown-icon" /> Export
+      </button>
+    </div>
+
+    <div class="dropdown-menu2" id="dropdownMenu2">
+      <button class="dropdownItem" id="scanHistoryButton">
+        <img src="icons/history.png" class="dropdown-icon" /> Scan History
+      </button>
+      <button class="dropdownItem" id="supportUsBtn">
+        <img src="icons/premium.png" class="dropdown-icon" /> Support Us
+      </button>
+      <button class="dropdownItem" id="termsOfUseBtn">
+        <img src="icons/help.png" class="dropdown-icon" /> Terms of Use
+      </button>
+      <button class="dropdownItem" id="appSetting">
+        <img src="icons/wrench.png" class="dropdown-icon" /> Settings
+      </button>
+    </div>
+
+    <div class="body-container-wrapper">
+      <div class="body-container">
+        <div class="body1">
+          <div class="popup-container">
+            <div class="main-content">
+              <div class="url-content">
+                <div class="date-container">
+                  <small>Date: <span id="current-date"></span></small>
+                </div>
+                <div class="url-container">
+                  <small>URL Scanned: <span id="current-url" class="url-text">Loading…</span></small>
+                </div>
+              </div>  
+
+              <div id="scoreFile"></div>
+              <div id="summaryReportFile"></div>
+              <div id="passedChecks"></div>
+              <div id="vulnerability-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="body2">
+      <div class="noise-content">
+        <button id="onoff2">
+          <img src="icons/onoff2.png" alt="Toggle" class="offon2" />
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="button-wrapper">
+        <button id="scan-now" class="footer-btn active">SCAN LATEST LINK</button>
+
+        <button id="add-whitelist" class="footer-btn">ADD CURRENT LINK TO WHITELIST</button>
+      </div>
+    </div>
+    <div id="shareModal" class="modal hidden">
+      <div class="modal-content">
+        <button id="closeShareBtn" class="modal-close-btn">✖</button>
+        <p id="shareText" class="share-preview-text"></p>
+        <div class="share-buttons">
+          <button id="copyShareBtn">
+            <img src="icons/export.png" class="dropdown-icon" />
+            Copy
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="maincontent/chart.js"></script>
+    <script src="popup.js"></script>
+    <script src="maincontent/maincontent.js"></script>
+    <script src="reportBuilder.js"></script>
+    <script src="libs/html2pdf.bundle.min.js"></script>
+  </body>
+</html>

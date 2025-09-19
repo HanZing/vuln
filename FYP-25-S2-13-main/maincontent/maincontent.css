@@ -1,0 +1,370 @@
+.score {
+  color: #E3867D;
+  padding: 5px;
+  background-color: #F1F1F2;
+}
+
+.score h3 span {
+  display: flex;
+  align-items: center;
+  margin-top: -6px;
+}
+
+.score img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px; 
+  margin-left: 2px;
+  margin-top: -5px;
+}
+
+.scoreText {
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px; 
+  text-underline-offset: 4px;     
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.totalScore{
+  text-align: center;
+  font-size: 55px;
+  font-weight: 600;
+  margin-top: -10px;
+}
+
+.totalScore100{
+  text-align: center;
+  color: #A1D6E2;
+  font-weight: 600;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 14px;
+  margin-top: -15px;
+  letter-spacing: 1px;
+}
+
+.grade{
+  text-align: center;
+  color: #384247;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.summaryReport {
+  color: #E3867D;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: #F1F1F2;
+}
+
+.summaryReport h3 span {
+  display: flex;
+  align-items: center;
+  margin-top: -6px;
+}
+
+.summaryReport img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px; 
+  margin-left: 2px;
+  margin-top: -5px;
+}
+
+.reportText {
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 4px;     
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: -2px;
+}
+
+.passedCheck {
+  color: #E3867D;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: #F1F1F2;
+}
+
+.passedCheck h3 span {
+  display: flex;
+  align-items: center;
+  margin-top: -6px;
+}
+
+.passedCheck img {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px; 
+  margin-left: 5px;
+  margin-top: -5px;
+}
+
+.passedText {
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 4px;     
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: -2px;
+}
+
+.passedList {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 22px;
+  padding-left: 10px;
+  color: #384247;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: -10px;
+  font-weight: 600;
+}
+
+.vulnerabilitiesdetected {
+  color: #E3867D;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: #F1F1F2;
+}
+
+.vulnerabilitiesdetected h3 span {
+  display: flex;
+  align-items: center;
+  margin-top: -6px;
+}
+
+.vulnerabilitiesdetected img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px; 
+  margin-left: 5px;
+  margin-top: -5px;
+}
+
+.detectedText {
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 4px;     
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: -2px;
+}
+
+.vulnerabilitiesdetected h4 span {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.vulnerabilitiesdetected h4 img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px; 
+  margin-left: 42px;
+  margin-top: -7px;
+}
+
+.scancompleted {
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 4px;     
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: -2px;
+  color: #85BAC6;
+}
+
+.vulnerabilitiesdetected h5 span {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.clickText {  
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -16px !important;
+  color: #C34D4D;
+  margin-left: 45px;
+}
+
+#vulnerability-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 17px; 
+}
+
+#vulnerability-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 21px;
+  font-size: 16px;
+  color: #384247;
+  font-weight: 500;
+  margin: 0; 
+  margin-left: 23px;
+  margin-top: -13px;
+}
+
+#vulnerability-items li:last-child {
+  border-bottom: none;
+}
+
+.detail-btn {
+  background: none;
+  border: none;
+  color: #384247;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;           
+  align-items: center;          
+  justify-content: center; 
+  padding: 2px 2px; 
+  margin: 0;
+  border-radius: 10px;
+  transition: color 0.2s ease;
+  height: 30px;
+}
+
+.detail-btn:hover {
+  background-color: rgba(206, 230, 242, 0.7);
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 3px; 
+}
+
+.arrow9-icon {
+  width: 8px !important;
+  height: 15px !important;
+  margin-top: 1px !important;
+}
+
+.detail-text {
+  margin-left: 6px;
+}
+
+.fixList {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 22px;
+  padding-left: 10px;
+  color: #384247;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: -10px;
+  font-weight: 500;
+}
+
+.summaryReport {
+  text-align: center;
+  background-color: #F1F1F2;
+}
+
+.vulnerabilitybreakdown {
+  font-size: 20px;
+  color: #88c0cc;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.donutChart {
+  margin-top: -60px;  
+  margin-bottom: -75px;
+  display: flex;
+  justify-content: center; 
+}
+
+.chart-label {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #384247;        
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.color-box {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: transparent; 
+}
+
+.aiBox {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.ai {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.ai img {
+  width: 35px;
+  height: 35px;
+  display: block;
+}
+
+.aiWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.aiHover {
+  position: absolute;
+  right: 70px;                 
+  top: 35%;
+  transform: translateY(-50%) scale(.98);
+  background: #6F757C;        
+  color: #fff;
+  padding: 0 12px; 
+  border-radius: 12px;
+  height: 34px;
+  width: 290px;
+  display: flex;            
+  align-items: center;       
+  justify-content: center;     
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 8px 18px rgba(0,0,0,.12);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  pointer-events: none;
+  z-index: 10;
+  text-align: center;        
+  white-space: nowrap;       
+}
+
+.aiWrap:hover .aiHover,
+.ai:focus-visible + .aiHover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) scale(1);
+}
+
+.aiHoverFont {
+  opacity: .95;
+}

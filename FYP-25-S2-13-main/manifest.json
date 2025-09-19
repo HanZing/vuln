@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "VulnEye",
+  "version": "1.0",
+  "description": "Client-Side Script Security Inspector",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle",
+      "js": ["content/scanners/JSLibraryScanner.js",
+              "content/scanners/XSSScanner.js",
+              "content/scanners/HeaderScanner.js",
+              "content/scanners/CSRFScanner.js",              
+              "content/scanners/CSPScanner.js",
+              "content/scanners/TrackerScanner.js",
+              "content/content.js",
+              "content/detail_modal.js"
+            ]
+    }
+  ],
+  "permissions": ["scripting", "activeTab", "tabs", "storage", "notifications"
+  ], 
+  "web_accessible_resources": [
+    {
+      "resources": ["content/scanners/jsrepository.json",
+                    "content/scanners/xssRules.json",
+                    "content/scanners/trackers.json",
+                    "content/scanners/headerRules.json",                   
+                    "content/scanners/csrfRules.json",
+                    "maincontent/chart.js",
+                    "icons/*.png"
+                  ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
+
+  

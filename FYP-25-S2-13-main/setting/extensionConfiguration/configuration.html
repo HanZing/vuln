@@ -1,0 +1,74 @@
+<div class="configurationPage" id="configurationPage">
+  <div class="configurationHeader">
+    <button class="backButton" id="backButton">
+      <img src="icons/backArrow.png" alt="back" class="backIcon" />
+    </button>
+    <h2 class="configurationTitle">Extension Configuration</h2>
+  </div>
+
+  <div class="sectionConfiguration">
+    <h3 class="sectionConfigurationTitle">
+      <span>Scanning Options:</span>
+    </h3>
+
+    <div class="contentRow">
+      <span class="label">JavaScript Source Scan</span>
+      <div class="switch2">
+        <div class="switch-toggle2" id="toggle-js">
+          <div class="switch-knob2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentRow">
+      <span class="label">HTTP Security Header Check</span>
+      <div class="switch2">
+        <div class="switch-toggle2" id="toggle-header">
+          <div class="switch-knob2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentRow">
+      <span class="label">DOM-based XSS Detection</span>
+      <div class="switch2">
+        <div class="switch-toggle2" id="toggle-xss">
+          <div class="switch-knob2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentRow">
+      <span class="label">CSRF Token Check</span>
+      <div class="switch2">
+        <div class="switch-toggle2" id="toggle-csrf">
+          <div class="switch-knob2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentRow">
+      <span class="label">CSP Header Check</span>
+      <div class="switch2">
+        <div class="switch-toggle2" id="toggle-csp">
+          <div class="switch-knob2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentRow">
+      <span class="label">Tracker Detection</span>
+      <div class="switch2">
+        <div class="switch-toggle2" id="toggle-trackers">
+          <div class="switch-knob2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="saveBtnContainer">
+      <button id="save-btn">SAVE</button>
+    </div>
+  </div>
+</div>
+
+<script src="configuration.js"></script>

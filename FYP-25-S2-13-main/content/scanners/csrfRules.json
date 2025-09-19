@@ -1,0 +1,32 @@
+{
+  "csrf-token-form": {
+    "severity": "INFO",
+    "suggestion": "CSRF token found in form. Good practice.",
+    "reference": "OWASP CSRF Prevention: https://owasp.org/www-community/attacks/csrf"
+  },
+  "missing-csrf-token-form": {
+    "severity": "HIGH",
+    "suggestion": "Add a hidden CSRF token input field to secure the form.",
+    "reference": "OWASP Form Security: https://owasp.org/www-community/attacks/csrf"
+  },
+  "csrf-token-meta": {
+    "severity": "INFO",
+    "suggestion": "CSRF token found in meta tag. Good practice.",
+    "reference": "OWASP Meta Tags: https://owasp.org/www-community/attacks/csrf"
+  },
+  "csrf-token-cookie": {
+    "severity": "MODERATE",
+    "suggestion": "CSRF token stored in cookie. Ensure it is HttpOnly and SameSite.",
+    "reference": "OWASP Cookie Flags: https://owasp.org/www-community/HttpOnly"
+  },
+  "sensitive-form-no-csrf": {
+    "severity": "HIGH",
+    "suggestion": "Include CSRF protection for state-changing requests.",
+    "reference": "OWASP Sensitive Actions: https://owasp.org/www-community/attacks/csrf"
+  },
+  "scanner-error": {
+    "severity": "MODERATE",
+    "suggestion": "Scanner encountered an error. Check console for details.",
+    "reference": "Scanner internal error"
+  }
+}

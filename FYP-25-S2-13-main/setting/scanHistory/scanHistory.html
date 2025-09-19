@@ -1,0 +1,40 @@
+<div class="scanHistoryPage">
+  <div class="scanHistoryHeader">
+    <button class="backButton" id="backButton">
+      <img src="icons/backArrow.png" alt="back" class="backIcon" />
+    </button>
+    <h2 class="scanHistoryTitle">Scan History</h2>
+    <button id="setting3">
+        <img src="icons/settings.png" alt="Settings" class="setting3" />
+    </button>
+  </div>
+
+  <table id="scan-history-table">
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="confirmModal" class="modal hidden">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this scan?</p>
+    <div class="modal-buttons">
+      <button id="confirmYes">Yes</button>
+      <button id="confirmNo">No</button>
+    </div>
+  </div>
+</div>
+
+<div id="dropdownMenuScan" class="dropdownMenuScan hidden">
+  <button class="dropdownItem3" id="searchByDate">
+    <img src="icons/search.png" class="dropdown-icon" /> Search by Date
+  </button>
+  <button class="dropdownItem3" id="deleteAll">
+    <img src="icons/delete.png" class="dropdown-icon" /> Delete all
+  </button>
+</div>
+
+<div id="datePickerWrapper" class="hidden">
+  <div class="date-picker-modal">
+    <input type="date" id="centeredDatePicker" />
+  </div>
+</div>
