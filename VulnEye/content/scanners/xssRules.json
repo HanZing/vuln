@@ -1,10 +1,11 @@
 {
   "inline-event-handler": {
-    "severity": "MODERATE",
+    "severity": "LOW",
     "suggestion": "Move inline event handlers into external JS and use addEventListener().",
     "references": [
       "OWASP XSS Prevention Cheat Sheet: Avoid inline event handlers"
-    ]
+    ],
+    "note": "Not a vulnerability by itself: inline code makes a strict CSP (without unsafe-inline) harder to deploy, which removes a key XSS mitigation."
   },
   "javascript-uri": {
     "severity": "MODERATE",
@@ -14,11 +15,12 @@
     ]
   },
   "inline-script": {
-    "severity": "HIGH",
+    "severity": "LOW",
     "suggestion": "Move inline `<script>` contents into external files and enforce a strong CSP.",
     "references": [
       "OWASP XSS Prevention Cheat Sheet: Don’t place untrusted HTML into `<script>`"
-    ]
+    ],
+    "note": "Not a vulnerability by itself: inline code makes a strict CSP (without unsafe-inline) harder to deploy, which removes a key XSS mitigation."
   },
   "css-javascript": {
     "severity": "HIGH",
@@ -28,7 +30,7 @@
     ]
   },
   "iframe-srcdoc": {
-    "severity": "HIGH",
+    "severity": "MODERATE",
     "suggestion": "Avoid unsanitized `srcdoc`. Use a sandboxed iframe or external HTML file with proper sanitization.",
     "references": [
       "DOMPurify GitHub Release Notes: srcdoc bypass considerations"

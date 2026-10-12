@@ -1,16 +1,7 @@
 [
   {
-    "name": "googleapis.com",
-    "pattern": "(^|\\.)googleapis\\.com$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
     "name": "facebook.com",
-    "pattern": "(^|\\\\.)facebook\\\\.com$",
+    "pattern": "(^|\\.)facebook\\.com$",
     "severity": "low",
     "summary": "Social media tracker / analytics",
     "references": [
@@ -19,7 +10,7 @@
   },
   {
     "name": "facebook.net",
-    "pattern": "(^|\\\\.)facebook\\\\.net$",
+    "pattern": "(^|\\.)facebook\\.net$",
     "severity": "low",
     "summary": "Social media tracker / analytics",
     "references": [
@@ -28,7 +19,7 @@
   },
   {
     "name": "google-analytics.com",
-    "pattern": "(^|\\\\.)google-analytics\\\\.com$",
+    "pattern": "(^|\\.)google-analytics\\.com$",
     "severity": "low",
     "summary": "General tracker / analytics",
     "references": [
@@ -37,7 +28,7 @@
   },
   {
     "name": "doubleclick.net",
-    "pattern": "(^|\\\\.)doubleclick\\\\.net$",
+    "pattern": "(^|\\.)doubleclick\\.net$",
     "severity": "medium",
     "summary": "Advertising network / header-bidding",
     "references": [
@@ -46,7 +37,7 @@
   },
   {
     "name": "googleadservices.com",
-    "pattern": "(^|\\\\.)googleadservices\\\\.com$",
+    "pattern": "(^|\\.)googleadservices\\.com$",
     "severity": "medium",
     "summary": "Advertising network / ad-serving",
     "references": [
@@ -37737,15 +37728,6 @@
     ]
   },
   {
-    "name": "amazonaws.com",
-    "pattern": "(^|\\.)amazonaws\\.com$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
     "name": "amp-error-reporting.appspot.com",
     "pattern": "(^|\\.)amp-error-reporting\\.appspot\\.com$",
     "severity": "low",
@@ -39402,15 +39384,6 @@
     ]
   },
   {
-    "name": "azureedge.net",
-    "pattern": "(^|\\.)azureedge\\.net$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
     "name": "azurewebsites.net",
     "pattern": "(^|\\.)azurewebsites\\.net$",
     "severity": "low",
@@ -40241,15 +40214,6 @@
   {
     "name": "cloudfront-labs.amazonaws.com",
     "pattern": "(^|\\.)cloudfront-labs\\.amazonaws\\.com$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
-    "name": "cloudfront.net",
-    "pattern": "(^|\\.)cloudfront\\.net$",
     "severity": "low",
     "summary": "General tracker / analytics",
     "references": [
@@ -43472,15 +43436,6 @@
   {
     "name": "js.verisoul.ai",
     "pattern": "(^|\\.)js\\.verisoul\\.ai$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
-    "name": "jsdelivr.net",
-    "pattern": "(^|\\.)jsdelivr\\.net$",
     "severity": "low",
     "summary": "General tracker / analytics",
     "references": [
@@ -52164,15 +52119,6 @@
     ]
   },
   {
-    "name": "akamaihd.net",
-    "pattern": "(^|\\.)akamaihd\\.net$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
     "name": "aksb-a.akamaihd.net",
     "pattern": "(^|\\.)aksb-a\\.akamaihd\\.net$",
     "severity": "low",
@@ -52517,15 +52463,6 @@
   {
     "name": "0.0.0.0",
     "pattern": "(^|\\.)0\\.0\\.0\\.0$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
-    "name": "[::]",
-    "pattern": "(^|\\.)[::]$",
     "severity": "low",
     "summary": "General tracker / analytics",
     "references": [
@@ -53561,15 +53498,6 @@
   {
     "name": "cdn-files.prsmedia.fr",
     "pattern": "(^|\\.)cdn-files\\.prsmedia\\.fr$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
-    "name": "cloudfront.net",
-    "pattern": "(^|\\.)cloudfront\\.net$",
     "severity": "low",
     "summary": "General tracker / analytics",
     "references": [
@@ -65576,15 +65504,6 @@
   {
     "name": "zion-telemetry.api.cnn.io",
     "pattern": "(^|\\.)zion-telemetry\\.api\\.cnn\\.io$",
-    "severity": "low",
-    "summary": "General tracker / analytics",
-    "references": [
-      "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
-    ]
-  },
-  {
-    "name": "akamaihd.net",
-    "pattern": "(^|\\.)akamaihd\\.net$",
     "severity": "low",
     "summary": "General tracker / analytics",
     "references": [

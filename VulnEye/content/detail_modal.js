@@ -396,6 +396,16 @@ function injectModalStyles() {
   document.head.appendChild(style);
 }
 
+// Only high/moderate/low icons exist; map the other severities onto them.
+function severityIcon(sev) {
+  const s = String(sev || '').toLowerCase();
+  const file = (s === 'critical' || s === 'high') ? 'high'
+    : (s === 'moderate' || s === 'medium') ? 'moderate'
+    : (s === 'info') ? 'passed'
+    : 'low';
+  return chrome.runtime.getURL('icons/' + file + '.png');
+}
+
 function escapeHtml(str = '') {
   return str
     .replace(/&/g, '&amp;')
@@ -452,7 +462,7 @@ function showSiteModal(type, items) {
 
       // Issue name (title)
       const h3 = document.createElement('h3');
-      h3.textContent = escapeHtml(`${i.library} v${i.version}`);
+      h3.textContent = `${i.library} v${i.version}`;
       entry.appendChild(h3);
 
       // Meta: Tag <> | Severity (with icon)
@@ -462,7 +472,7 @@ function showSiteModal(type, items) {
         Tag: ${escapeHtml('<>')}
         <span class="xss-separator">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
         Severity: <span class="severity-${i.severity.toLowerCase()}">
-          <img src="${chrome.runtime.getURL('icons/' + i.severity.toLowerCase() + '.png')}">
+          <img src="${severityIcon(i.severity)}">
           ${escapeHtml(i.severity.charAt(0).toUpperCase() + i.severity.slice(1).toLowerCase())}
         </span>
       `;
@@ -514,7 +524,7 @@ function showSiteModal(type, items) {
 
       // Title
       const h3 = document.createElement('h3');
-      h3.textContent = escapeHtml(i.type); // name/title
+      h3.textContent = i.type; // name/title
       entry.appendChild(h3);
 
       // Meta (Tag | Severity)
@@ -524,7 +534,7 @@ function showSiteModal(type, items) {
         Tag: ${escapeHtml('<' + i.tag.toLowerCase() + '>')}
         <span class="xss-separator">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
         Severity: <span class="severity-${i.severity.toLowerCase()}">
-                    <img src="${chrome.runtime.getURL('icons/' + i.severity.toLowerCase() + '.png')}">
+                    <img src="${severityIcon(i.severity)}">
                     ${escapeHtml(i.severity.charAt(0).toUpperCase() + i.severity.slice(1).toLowerCase())}
                   </span>
       `;
@@ -563,7 +573,7 @@ function showSiteModal(type, items) {
 
       // Title (Header vulnerability name)
       const h3 = document.createElement('h3');
-      h3.textContent = escapeHtml(i.type); 
+      h3.textContent = i.type; 
       entry.appendChild(h3);
 
       // Meta (Tag + Severity)
@@ -573,7 +583,7 @@ function showSiteModal(type, items) {
         Tag: ${escapeHtml('<>')}
         <span class="xss-separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
         Severity: <span class="severity-${i.severity.toLowerCase()}">
-                    <img src="${chrome.runtime.getURL('icons/' + i.severity.toLowerCase() + '.png')}">
+                    <img src="${severityIcon(i.severity)}">
                     ${escapeHtml(i.severity.charAt(0).toUpperCase() + i.severity.slice(1).toLowerCase())}
                   </span>
       `;
@@ -624,7 +634,7 @@ function showSiteModal(type, items) {
 
       // Title (CSRF vulnerability name)
       const h3 = document.createElement('h3');
-      h3.textContent = escapeHtml(i.type); 
+      h3.textContent = i.type; 
       entry.appendChild(h3);
 
       // Meta (Tag + Severity)
@@ -634,7 +644,7 @@ function showSiteModal(type, items) {
         Tag: ${escapeHtml('<' + i.tag.toLowerCase() + '>')}
         <span class="xss-separator">&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
         Severity: <span class="severity-${i.severity.toLowerCase()}">
-                    <img src="${chrome.runtime.getURL('icons/' + i.severity.toLowerCase() + '.png')}">
+                    <img src="${severityIcon(i.severity)}">
                     ${escapeHtml(i.severity.charAt(0).toUpperCase() + i.severity.slice(1).toLowerCase())}
                   </span>
       `;
@@ -687,7 +697,7 @@ function showSiteModal(type, items) {
 
       // Title 
       const h3 = document.createElement('h3');
-      h3.textContent = escapeHtml(i.tracker);
+      h3.textContent = i.tracker;
       entry.appendChild(h3);
 
       // Severity
@@ -695,7 +705,7 @@ function showSiteModal(type, items) {
       metaBox.className = 'xss-meta-box';
       metaBox.innerHTML = `
         Severity: <span class="severity-${i.severity.toLowerCase()}">
-                    <img src="${chrome.runtime.getURL('icons/' + i.severity.toLowerCase() + '.png')}">
+                    <img src="${severityIcon(i.severity)}">
                     ${escapeHtml(i.severity.charAt(0).toUpperCase() + i.severity.slice(1).toLowerCase())}
                   </span>
       `;

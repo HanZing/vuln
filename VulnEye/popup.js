@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const previewHTML = [
       row('', '', 'Scan Summary'),
-      row('', '', `URL: <span class="url-highlight">${url}</span>`, 'is-url'),
+      row('', '', `URL: <span class="url-highlight">${escapePopupHtml(url)}</span>`, 'is-url'),
       fileRow('chart-histogram.png', 'issues', 'Issues:', totalIssues),
       fileRow('warning.png', 'score', 'Score:', `${score}/100`),
       fileRow('wrench.png', 'severity', 'Severity:', severity),
@@ -235,15 +235,12 @@ document.addEventListener("DOMContentLoaded", () => {
           notifyLowScore(score);
           
           chrome.storage.local.set({ lastScanResult: response }, () => {
-            chrome.storage.local.get({ scanHistory: [] }, ({ scanHistory }) => {
-              const score = calculateScore(response);
-              const issues = Object.values(response)
-                .reduce((sum, arr) => sum + (Array.isArray(arr) ? arr.length : 0), 0);
-              const url = document.getElementById("current-url").innerText;
-              const date = new Date().toISOString();
-
-              scanHistory.push({ date, url, score, issues, mode: "manual" });
-              chrome.storage.local.set({ scanHistory });
+            addScanHistory({
+              date: new Date().toISOString(),
+              url: document.getElementById("current-url").innerText,
+              score,
+              issues: countFindings(response),
+              mode: "manual"
             });
           });
           done();
@@ -480,16 +477,9 @@ function showLoadingAndScan(scanFunction) {
             if (lastScanResult) {
               renderResults(lastScanResult);
 
+              // History is written once by the scan itself (manual or auto);
+              // writing here as well created a duplicate "auto" entry per scan.
               const score = calculateScore(lastScanResult);
-              const issues = Object.values(lastScanResult)
-              .reduce((sum, arr) => sum + (Array.isArray(arr) ? arr.length : 0), 0);
-              const url = document.getElementById("current-url").innerText;
-              const date = new Date().toISOString();
-
-              chrome.storage.local.get({ scanHistory: [] }, ({ scanHistory }) => {
-                scanHistory.push({ date, url, score, issues, mode: "auto" });
-                chrome.storage.local.set({ scanHistory });
-              });
               const el = document.querySelector("#score-value");
               notifyLowScore(score);
 
@@ -922,7 +912,7 @@ function renderResults(response) {
   vuList.innerHTML = "";
   let foundAny = false;
 
-  if (response.libraries?.length) {
+  if (hasFindings(response, 'libraries')) {
     const li = document.createElement("li");
     li.textContent = "JS Vulnerability detected ";
     const btn = document.createElement("button");
@@ -934,7 +924,7 @@ function renderResults(response) {
     foundAny = true;
   }
 
-  if (response.xss?.length) {
+  if (hasFindings(response, 'xss')) {
     const li = document.createElement("li");
     li.textContent = "XSS patterns detected ";
     const btn = document.createElement("button");
@@ -946,7 +936,7 @@ function renderResults(response) {
     foundAny = true;
   }
 
-  if (response.header?.length) {
+  if (hasFindings(response, 'header')) {
     const li = document.createElement("li");
     li.textContent = "HTTP Header issues detected ";
     const btn = document.createElement("button");
@@ -958,7 +948,7 @@ function renderResults(response) {
     foundAny = true;
   }
 
-  if (response.csrf?.length) {
+  if (hasFindings(response, 'csrf')) {
     const li = document.createElement("li");
     li.textContent = "CSRF token issues detected ";
     const btn = document.createElement("button");
@@ -970,7 +960,7 @@ function renderResults(response) {
     foundAny = true;
   }
 
-  if (response.trackers?.length) {
+  if (hasFindings(response, 'trackers')) {
     const li = document.createElement("li");
     li.textContent = "Trackers detected ";
     const btn = document.createElement("button");
@@ -1002,35 +992,7 @@ function showDetails(type) {
   });
 }
 
-function calculateScore(results) {
-  let score = 100;
-  const severityPoints = { critical: 15, high: 10, moderate: 5, low: 2 };
-  const typeWeights     = { xss:1.0, libraries:1.2, header:1.0, csrf:1.0, csp:1.0, trackers:1.0 };
-
-  console.log("===== Vulnerability Score Breakdown =====");
-
-  for (const type in results) {
-    const issues = results[type];
-    if (!Array.isArray(issues)) continue;
-
-    issues.forEach(issue => {
-      let severity = (issue.severity || 'low').toLowerCase();
-
-      if (!issue.severity && type === 'csp' && issue.exists === false) severity = 'low';
-
-      const points = severityPoints[severity] || 0;
-      const weight = typeWeights[type] || 1.0;
-      const deduction = points * weight;
-      score -= deduction;
-
-      console.log(`[${type.toUpperCase()}] ${severity.toUpperCase()} → -${deduction} points`);
-    });
-  }
-
-  const finalScore = Math.max(0, Math.round(score));
-  console.log(`Final Security Score: ${finalScore}`);
-  return finalScore;
-}
+// calculateScore() is defined in common/scoring.js
 
 // Scan options toggle
 function initConfigurationToggles() {
@@ -1083,21 +1045,8 @@ function initConfigurationToggles() {
 }
 
 function getSeverityCounts(results) {
-  const counts = { critical: 0, high: 0, moderate: 0, low: 0 };
-
-  for (const type in results) {
-    const issues = results[type];
-    if (!Array.isArray(issues)) continue;
-
-    issues.forEach(issue => {
-      let severity = (issue.severity || 'low').toLowerCase();
-      if (severity === 'medium') sev = 'moderate';
-      if (!issue.severity && type === 'csp' && issue.exists === false) severity = 'low';
-      if (counts.hasOwnProperty(severity)) counts[severity]++;
-    });
-  }
-
-  return [counts.critical, counts.high, counts.moderate, counts.low];
+  const c = countSeverities(results);
+  return [c.critical, c.high, c.moderate, c.low];
 }
 
 /* ------------------------------------------------------------------
@@ -1120,7 +1069,7 @@ function initWhitelistUI() {
       row.innerHTML = `
         <div class="domain-wrapper">
           <img src="${chrome.runtime.getURL('icons/scanhistory.png')}" class="domain-icon" alt="domain icon" />
-          <span class="domain-text">${host}</span>
+          <span class="domain-text">${escapePopupHtml(host)}</span>
         </div>
         <button class="delete-btn">
           <img src="${chrome.runtime.getURL('icons/delete.png')}" class="delete-icon" alt="delete icon" />
@@ -1302,7 +1251,7 @@ function renderScanHistory(scanHistory) {
         <div class="date-block">
           <div class="date-header">
             <img src="${chrome.runtime.getURL('icons/date.png')}" class="date-icon" alt="scan icon" />
-            ${dateStr}
+            ${escapePopupHtml(dateStr)}
           </div>
           <div class="scan-list"></div>
         </div>
@@ -1330,7 +1279,7 @@ function renderScanHistory(scanHistory) {
       itemDiv.innerHTML = `
         <div class="scan-url">
           <img src="${chrome.runtime.getURL('icons/scanhistory.png')}" class="url-icon" alt="scan icon" />
-          ${url}
+          ${escapePopupHtml(url)}
         </div>
         <div class="scan-details">
           <span class="scan-time">${time}</span>
@@ -1446,4 +1395,14 @@ function refreshAndScan() {
     // Reload with cache bypass
     chrome.tabs.reload(activeTabId, { bypassCache: true });
   });
+}
+
+// URLs and hostnames come from visited pages; never put them into innerHTML raw.
+function escapePopupHtml(str = '') {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }

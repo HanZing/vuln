@@ -6,7 +6,7 @@
   },
   "Missing X-Frame-Options": {
     "severity": "HIGH",
-    "suggestion": "Add 'X-Frame-Options: DENY' or 'SAMEORIGIN' to prevent clickjacking.",
+    "suggestion": "Add 'X-Frame-Options: DENY' or 'SAMEORIGIN', or a CSP 'frame-ancestors' directive, to prevent clickjacking.",
     "reference": "OWASP: https://owasp.org/www-community/attacks/Clickjacking"
   },
   "Missing X-Content-Type-Options": {
@@ -24,13 +24,13 @@
     "suggestion": "Add 'Permissions-Policy' to restrict access to powerful features like geolocation, camera, etc.",
     "reference": "MDN: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy"
   },
-  "Missing XSS-Protection": {
+  "Legacy XSS-Protection enabled": {
     "severity": "LOW",
-    "suggestion": "Add 'X-XSS-Protection: 1; mode=block' for legacy XSS protection (mostly for old IE/Edge).",
-    "reference": "OWASP: https://owasp.org/www-community/xss-prevention"
+    "suggestion": "Set 'X-XSS-Protection: 0' or remove the header. The legacy XSS filter has been removed from modern browsers and could introduce issues of its own; rely on a strong Content-Security-Policy instead.",
+    "reference": "OWASP HTTP Headers Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-xss-protection"
   },
   "Scanner Error": {
-    "severity": "MODERATE",
+    "severity": "INFO",
     "suggestion": "Scanner encountered an error while fetching headers.",
     "reference": "Scanner internal error"
   }
