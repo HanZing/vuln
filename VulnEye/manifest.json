@@ -18,7 +18,8 @@
     {
       "matches": ["<all_urls>"],
       "run_at": "document_idle",
-      "js": ["content/scanners/JSLibraryScanner.js",
+      "js": ["common/scoring.js",
+              "content/scanners/JSLibraryScanner.js",
               "content/scanners/XSSScanner.js",
               "content/scanners/HeaderScanner.js",
               "content/scanners/CSRFScanner.js",              

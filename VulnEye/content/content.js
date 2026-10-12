@@ -58,17 +58,8 @@ chrome.storage.local.get(
                 
           const result = { libraries: lib, xss, header: hdr, csrf, csp, trackers: trk };
           const score  = calculateScore(result);
-          const issues = Object.values(result)
-            .reduce((sum, arr) => sum + (Array.isArray(arr) ? arr.length : 0), 0);
-          const url    = window.location.href;
-          const date   = new Date().toISOString();
-
-          chrome.storage.local.set({ lastScanResult: result }, () => {
-            chrome.storage.local.get({ scanHistory: [] }, ({ scanHistory }) => {
-              scanHistory.push({ date, url, score, issues, mode: "auto" });
-              chrome.storage.local.set({ scanHistory });
-            });
-          });
+          const issues = countFindings(result);
+          addScanHistory({ date: new Date().toISOString(), url: window.location.href, score, issues, mode: "auto" });
       })
   });
 });
@@ -119,25 +110,4 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   return true;
 });
 
-function calculateScore(results) {
-  let score = 100;
-  const severityPoints = { critical: 15, high: 10, moderate: 5, low: 2 };
-  const typeWeights     = { xss:1.0, libraries:1.2, header:1.0, csrf:1.0, csp:1.0, trackers:1.0 };
-
-  for (const type in results) {
-    const issues = results[type];
-    if (!Array.isArray(issues)) continue;
-    issues.forEach(issue => {
-      let severity = (issue.severity || 'low').toLowerCase();
-      if (!issue.severity && type==='csp' && issue.exists===false) severity = 'low';
-
-      const points    = severityPoints[severity] || 0;
-      const weight    = typeWeights[type]    || 1.0;
-      const deduction = points * weight;
-      score -= deduction;
-    });
-  }
-  
-  const finalScore = Math.max(0, Math.round(score));
-  return finalScore;
-}
+// calculateScore / countFindings / addScanHistory live in common/scoring.js

@@ -20,18 +20,9 @@ function _gradeOf(score) {
 
 /* Severity counts for summary */
 function _severityCounts(results) {
-  const counts = { critical: 0, high: 0, medium: 0, low: 0 };
-  if (!results || typeof results !== 'object') return counts;
-  for (const key in results) {
-    const arr = results[key];
-    if (!Array.isArray(arr)) continue;
-    arr.forEach(item => {
-      let sev = (item?.severity || 'low').toLowerCase();
-      if (!item?.severity && key === 'csp' && item?.exists === false) sev = 'low';
-      if (counts.hasOwnProperty(sev)) counts[sev]++;
-    });
-  }
-  return counts;
+  // Shared with the popup (common/scoring.js) so report and popup agree.
+  const c = countSeverities(results);
+  return { critical: c.critical, high: c.high, medium: c.moderate, low: c.low };
 }
 
 /* Copy the live donut chart as an <img> for reliable PDF rendering */

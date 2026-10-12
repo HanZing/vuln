@@ -8,18 +8,35 @@
       return {};
     });
 
+  // Some servers reject HEAD (405/501); fall back to GET in that case.
+  function fetchHeaders() {
+    return fetch(location.href, { method: 'HEAD', mode: 'same-origin', credentials: 'same-origin' })
+      .then(res => {
+        if (res.status === 405 || res.status === 501) {
+          return fetch(location.href, { method: 'GET', mode: 'same-origin', credentials: 'same-origin' });
+        }
+        return res;
+      });
+  }
+
   function runHeaderScan() {
 
     const issues = [];
 
     return rulesPromise.then(HEADER_RULES => {
-      return fetch(location.href, { method: 'HEAD', mode: 'same-origin' })
+      return fetchHeaders()
         .then(res => {
+          const csp = (res.headers.get('content-security-policy') || '').toLowerCase();
+          const hasFrameAncestors = /(^|;)\s*frame-ancestors\s/.test(csp);
+          const isHttps = location.protocol === 'https:';
+
           const checks = [
             {
               header: "strict-transport-security",
               type: "Missing Strict-Transport-Security",
               check: value => {
+                // Browsers ignore HSTS on plain-HTTP responses.
+                if (!isHttps) return { valid: true };
                 if (!value) return { valid: false, detail: "Missing header: Strict-Transport-Security" };
                 if (!/max-age=\d+/.test(value)) return { valid: false, detail: `Weak HSTS config: ${value}` };
                 return { valid: true };
@@ -29,7 +46,9 @@
               header: "x-frame-options",
               type: "Missing X-Frame-Options",
               check: value => {
-                if (!value) return { valid: false, detail: "Missing header: X-Frame-Options" };
+                // CSP frame-ancestors supersedes X-Frame-Options in modern browsers.
+                if (!value && hasFrameAncestors) return { valid: true };
+                if (!value) return { valid: false, detail: "Missing header: X-Frame-Options (and no CSP frame-ancestors)" };
                 if (!/^(DENY|SAMEORIGIN)$/i.test(value)) return { valid: false, detail: `Insecure value: ${value}` };
                 return { valid: true };
               }
@@ -63,11 +82,14 @@
             },
             {
               header: "x-xss-protection",
-              type: "Missing XSS-Protection",
+              type: "Legacy XSS-Protection enabled",
               check: value => {
-                return value?.includes("1")
+                // The XSS Auditor is gone from modern browsers and could itself
+                // be abused. OWASP now recommends "0" or omitting the header.
+                const v = (value || '').trim();
+                return (!v || v.startsWith('0'))
                   ? { valid: true }
-                  : { valid: false, detail: value ? `Disabled or misconfigured: ${value}` : "Missing header: X-XSS-Protection" };
+                  : { valid: false, detail: `X-XSS-Protection: ${v} (recommended: 0, or remove the header)` };
               }
             }
           ];
@@ -93,13 +115,14 @@
           return issues;
         })
         .catch(err => {
-          const fallback = HEADER_RULES["scanner-error"] || {};
+          const fallback = HEADER_RULES["Scanner Error"] || {};
           return [{
             type: 'scanner-error',
             tag: 'HEADER',
             detail: err.message,
             suggestion: fallback.suggestion || 'Scanner encountered an error.',
-            severity: fallback.severity || 'MEDIUM',
+            // Couldn't check is not the same as vulnerable: don't affect the score.
+            severity: fallback.severity || 'INFO',
             reference: fallback.reference || 'No reference available'
           }];
         });
